@@ -1,3 +1,87 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+#--------------------------WEB 
+
+home:
+    path: /
+    controller: App\Controller\WebController::home
+
+travel-tech-skills:
+    path: /travel-tech-skills
+    controller: App\Controller\WebController::travelTechSkills
+
+infoDeCurso:
+    path: /infoDeCurso
+    controller: App\Controller\WebController::infoDeCurso
+
+soft-skills:
+    path: /soft-skills
+    controller: App\Controller\WebController::softSkills
+
+retos:
+    path: /retos
+    controller: App\Controller\WebController::retos
+
+acompanamiento:
+    path: /acompanamiento
+    controller: App\Controller\WebController::acompanamiento
+
+solucines-de-inteligencia:
+    path: /solucines-de-inteligencia
+    controller: App\Controller\WebController::soluciones
+
+travel-crystal-ball:
+    path: /travel-crystal-ball
+    controller: App\Controller\WebController::travelCrystalBall
+    
+contacto:
+    path: /contacto
+    controller: App\Controller\WebController::contacto
+
+
+login:
+    path: /login
+    controller: App\Controller\LoginController::login
+
+logout:
+    path: /logout
+    methods: GET
+
+botonAltaAdmin:
+    path: /botonAltaAdmin
+    controller: App\Controller\WebController::botonAltaAdmin
+
+alta:
+    path: /alta
+    controller: App\Controller\WebController::alta
+
+formalta:
+    path: /formalta
+    controller: App\Controller\WebController::uploadUser
+
+
+
+
+
+campusUsuario:
+    path: /campusUsuario
+    controller: App\Controller\WebController::campus
+
+infoCurso:
+    path: /infoCurso
+    controller: App\Controller\WebController::infoCurso
+
+perfilInstructor:
+    path: /perfilInstructor
+    controller: App\Controller\WebController::perfilInstructor
+
+modificarEstado:
+    path: /modificarEstado
+    controller: App\Controller\WebController::modificarEstado
+
+reservar:
+    path: /reservar
+    controller: App\Controller\WebController::reservar
+

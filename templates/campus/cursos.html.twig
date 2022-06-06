@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Travel Tech Skills{% endblock %}
+
+{% block body %}
+{# {{ component('navbar') }} #}
+    {{ include('components/navbar.html.twig') }}
+
+    <div class="d-flex p-2 flex-wrap justify-content-around">
+        {% for cursos in cursosAux %}
+            {% for curso in cursos %}
+            
+                <div class="p-2">
+                    <div class="card " style="width:400px;">
+                        <img id="i1" class="card-img-top" src="/images/talleres/hubspot.jpg" alt="Card image" style="width:100%;">
+                        <div class="card-body">
+
+                            <h4 class="card-title">{{ curso.nombre }}</h4>
+                            <p class="card-text">{{ curso.duracion }} Horas | 
+                                {% if curso.valoracion == '0' %}
+                                    <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span>
+                                {% elseif curso.valoracion == '1' %}
+                                    <span class="fa fa-star starChecked"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span>
+                                {% elseif curso.valoracion == '2' %}
+                                    <span class="fa fa-star starChecked"></span> <span class="fa fa-star starChecked"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span>
+                                {% elseif curso.valoracion == '3' %}
+                                    <span class="fa fa-star starChecked"></span> <span class="fa fa-star starChecked"></span> <span class="fa fa-star starChecked"></span> <span class="fa fa-star"></span> <span class="fa fa-star"></span>
+                                {% elseif curso.valoracion == '4' %}
+                                    <span class="fa fa-star starChecked"></span> <span class="fa fa-star starChecked"></span> <span class="fa fa-star starChecked"></span> <span class="fa fa-star starChecked"></span> <span class="fa fa-star"></span>
+                                {% else %}
+                                    <span class="fa fa-star starChecked"></span> <span class="fa fa-star starChecked"></span> <span class="fa fa-star starChecked"></span> <span class="fa fa-star starChecked"></span> <span class="fa fa-star starChecked"></span>
+                                {% endif %}
+                            </p>
+                            <a href="{{ path('infoCurso', {curso} ) }}" class="btn btn-primary">Explorar</a>
+
+                        </div>
+                    </div>
+                </div>
+            
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

@@ -1,0 +1,148 @@
+{# 
+<p> {{ app.user.roles[0] }} </p>
+<p> {{ app.user.email }} </p>
+<p> {{ app.user.password }} </p>
+<p> {{ app.user.nombre }} </p>
+<p> {{ app.user.id }} </p>
+#}
+
+{% for material in materiales %}
+    <h5>{{ material.titulo }}</h5>
+    
+    <p>{{ material.enlace }}</p> {# Cambiar por iframe #}
+
+
+{% endfor %}
+
+{% if info == '0 Curso sin pasos' %}
+
+    {% for material in materiales %}
+        <h5>{{ material.titulo }}</h5>
+    {% endfor %}
+
+{% elseif info == '1 Cuestionario inicial' %}
+
+    <h5>Cuestionario inicial</h5>
+
+{% elseif info == '2 Reserva autoevaluación' %}
+
+    <h5>Reserva tu plaza</h5>
+
+    <div class="row">
+
+        <div class='col-sm-9'>
+        
+            <div class="alert alert-info">
+
+                <p>Recuerde que la prueba dura entorno a 2 horas. <br>
+                Seleccione una hora entre las 09:00 am a 14:00 pm, por favor no seleccione fines de semana.</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <form action="reservar" method="post">
+
+        <div class="row">
+
+            <div class='col-sm-3'>
+
+                <label for="fecha">Día</label>
+                <input type="date" name="fecha" id="fecha" class="form-control" required>
+
+                <script>
+                    var today = new Date();
+                    var dd = today.getDate();
+                    var mm = today.getMonth()+1;
+                    var yyyy = today.getFullYear();
+                    if(dd<10){
+                        dd='0'+dd
+                    } 
+                    if(mm<10){
+                        mm='0'+mm
+                    }
+
+                    today = yyyy+'-'+mm+'-'+dd;
+                    document.getElementById("fecha").setAttribute("min", today);
+                    document.getElementById("fecha").setAttribute("value", today);
+                </script>
+
+            </div>
+
+            <div class='col-sm-3'>
+
+                <label for="hora">Hora</label>
+                <input type="time" name="hora" id="hora" class="form-control" value="09:00" min="09:00" max="14:00" required>
+
+                {# <script>
+                    document.getElementById("hora").step = "30";
+                </script> #}
+
+
+            </div>
+
+            <div class='col-sm-3'>
+
+                <label for="lugar">Lugar</label>
+                <select type="text" name="lugar" id="lugar" class="form-control" required>
+
+                    {% for lugar in lugares %}
+                        <option value="{{ lugar.nombre }}">{{ lugar.nombre }}</option>
+                    {% endfor %}
+                    
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="row" style="text-align:center;">
+
+            <div class='col-sm-9'>
+                
+                <br>
+                <button type="submit" class="btn btn-lg btn-primary"> Reservar </button>
+
+            </div>
+
+        </div>
+
+    </form>
+
+{% elseif info == '3 Espera resultados autoevaluación' %}
+
+    <p>3</p>
+
+{% elseif info == '4 Explicación videoconferencia' %}
+
+    <p>4</p>
+
+{% elseif info == '5 Material entrenamiento' %}
+
+    <p>5</p>
+
+{% elseif info == '6 Examen' %}
+
+    <p>6</p>
+
+{% elseif info == '7 Reserva entrenamientos' %}
+
+    <p>7</p>
+
+{% elseif info == '8 Videos' %}
+
+    <p>8</p>
+
+{% elseif info == '9 Horario talleres' %}
+
+    <p>9</p>
+
+{% else %}
+
+    <p>10</p>
+
+{% endif %}
+<br>
+ 

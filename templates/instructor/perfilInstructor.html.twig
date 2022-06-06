@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {{ include('components/navbar.html.twig') }}
+
+    <div class="container" style="text-align: center;">
+        <h2>Alumnos activos</h2>
+    </div>
+    
+    <div class="d-flex p-2 flex-wrap justify-content-around">
+        
+        {% for alumnos in alumnosAux %}
+            {% for alumno in alumnos %}
+
+                {% set idAux = alumno.id %}
+                {% set nombreAux = alumno.nombre %}
+                {% set alumnoAux = [alumno.id, alumno.nombre, alumno.email] %}
+
+                {{ render(controller(
+                    'App\\Controller\\WebController::infoAlumno' , {id: idAux, nombre: nombreAux, alumno: alumnoAux},
+                )) }}
+
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <div class="container" style="text-align: center;">
+        <h2>Antiguos alumnos</h2>
+    </div>
+    
+    <div class="d-flex p-2 flex-wrap justify-content-around">
+
+    
+        
+        {% for alumnos in alumnosAux %}
+            {% for alumno in alumnos %}
+
+                {% set idAux = alumno.id %}
+                {% set nombreAux = alumno.nombre %}
+                {% set alumnoAux = [alumno.id, alumno.nombre, alumno.email] %}
+
+                {{ render(controller(
+                    'App\\Controller\\WebController::infoAlumnoInactivo' , {id: idAux, nombre: nombreAux, alumno: alumnoAux},
+                )) }}
+
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+{% endblock %}
