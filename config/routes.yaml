@@ -40,6 +40,9 @@ contacto:
     path: /contacto
     controller: App\Controller\WebController::contacto
 
+contactoForm:
+    path: /contactoForm
+    controller: App\Controller\WebController::contactoForm
 
 login:
     path: /login
@@ -69,9 +72,9 @@ campusUsuario:
     path: /campusUsuario
     controller: App\Controller\WebController::campus
 
-infoCurso:
-    path: /infoCurso
-    controller: App\Controller\WebController::infoCurso
+Curso:
+    path: /Curso
+    controller: App\Controller\WebController::Curso
 
 perfilInstructor:
     path: /perfilInstructor

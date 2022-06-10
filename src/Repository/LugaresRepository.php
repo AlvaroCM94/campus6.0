@@ -50,6 +50,28 @@ class LugaresRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
+    public function getLugarIdPorNombre($lugar){
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT id FROM lugares WHERE nombre = '$lugar'";
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function getLugarPorId($id){
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT * FROM lugares WHERE id = '$id'";
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchAllAssociative();
+    }
+
 //    /**
 //     * @return Lugares[] Returns an array of Lugares objects
 //     */

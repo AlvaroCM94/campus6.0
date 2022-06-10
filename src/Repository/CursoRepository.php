@@ -145,6 +145,17 @@ class CursoRepository extends ServiceEntityRepository
         return $resultSet->fetchAllAssociative();
     }
 
+    public function getCursoPorNombre($nombreC){
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "SELECT * FROM curso WHERE nombre='$nombreC'";
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchAllAssociative();
+    }
+
     public function getEstado($idUsuario, $idCurso){
         $conn = $this->getEntityManager()->getConnection();
 

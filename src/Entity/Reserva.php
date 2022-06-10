@@ -13,7 +13,7 @@ class Reserva
     #[ORM\Column(type: 'integer')]
     private $id;
 
-    #[ORM\Column(type: 'datetime')]
+    #[ORM\Column(type: 'datetime', unique: true)]
     private $fecha;
 
     #[ORM\ManyToOne(targetEntity: Usuario::class, inversedBy: 'reservas')]

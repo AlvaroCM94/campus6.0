@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{# {% set current_path = app.request.get('nombreCurso') %} #}
+
+{% block title %}{{ app.request.get('nombreCurso') }}{% endblock %}
+
+{% block body %}
+    {{ include('components/navbar.html.twig') }}
+
+
+    {% set nombre = app.request.get('nombreCurso') %}
+
+    {% if nombre != "" %}
+
+        {{ render(controller(
+            'App\\Controller\\WebController::infoCurso', {nombreC: nombre}
+        )) }}
+
+    {% else %}
+
+        {{ render(controller(
+            'App\\Controller\\WebController::infoCurso', {nombreC: curso.nombre}
+        )) }}
+        
+    {% endif %}
+
+{% endblock %}

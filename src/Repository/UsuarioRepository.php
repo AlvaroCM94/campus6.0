@@ -125,6 +125,23 @@ class UsuarioRepository extends ServiceEntityRepository implements PasswordUpgra
         return $resultSet->fetchAllAssociative();
     }
 
+    public function contactoForm($nombre, $rol, $password, $correo, $apellidos, $cp, $genero, $estudios, $areaTitulo,
+        $empresa, $cargo, $almaMater, $interes, $telefono, $conoce, $tipoContacto, $comunicaciones, $datos, $tramitado){
+
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "INSERT INTO usuario (nombre, roles, password, email, apellidos, cp, genero, nivel_estudios, area_titulo, empresa, cargo, alma_mater, areas_interes, telefono, como_conoce, tipo_contacto, comunicaciones, procesar_almacenar_datos, tramitado)
+        VALUES ('$nombre', '$rol', '$password', '$correo', '$apellidos', '$cp', '$genero', '$estudios', '$areaTitulo', '$empresa', '$cargo', '$almaMater', '$interes', '$telefono', '$conoce', '$tipoContacto', '$comunicaciones', '$datos', '0' )";
+        //dd($sql);
+
+        $stmt = $conn->prepare($sql);
+        //dd($stmt);
+        $resultSet = $stmt->executeQuery();
+        //dd($resultSet);
+
+        return $resultSet->fetchAllAssociative();
+    }
+
 
 //    /**
 //     * @return Usuario[] Returns an array of Usuario objects

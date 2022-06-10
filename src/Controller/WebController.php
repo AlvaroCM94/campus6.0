@@ -21,150 +21,181 @@ use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 
-class WebController extends AbstractController{
+class WebController extends AbstractController
+{
 
     // *****************************************************WEB CONTROLLERS*****************************************************
 
-    public function navbar():Response {
+    public function navbar(): Response{
+
         return $this->render('components/navbar.html.twig');
-        
+
     }
 
-    public function home():Response {
+    public function home(): Response{
+
         return $this->render('web/home.html.twig');
-        
+
     }
 
-    public function softSkills():Response {
+    public function softSkills(): Response{
+
         return $this->render('web/soft-skills.html.twig');
-        
+
     }
 
-    public function retos():Response {
+    public function retos(): Response{
+
         return $this->render('web/retos.html.twig');
-        
+
     }
 
-    public function acompanamiento():Response {
+    public function acompanamiento(): Response{
+
         return $this->render('web/acompanamiento.html.twig');
-        
+
     }
 
-    public function soluciones():Response {
+    public function soluciones(): Response{
+
         return $this->render('web/soluciones-de-inteligencia.html.twig');
-        
+
     }
 
-    public function travelCrystalBall():Response {
+    public function travelCrystalBall(): Response{
+
         return $this->render('web/travel-crystal-ball.html.twig');
-        
+
     }
 
-    public function contacto():Response {
-        return $this->render('web/contacto.html.twig');
-        
+    public function contacto(): Response{
+
+        $error = "";
+
+        return $this->render('web/contacto.html.twig', [
+            'contoller_name' => 'WebController', 'error' => $error,
+        ]);
+
     }
 
-    public function travelTechSkills(EntityManagerInterface $em):Response {
-        try{
+    public function travelTechSkills(EntityManagerInterface $em): Response{
+
+        try {
 
             $cursos = $em->getRepository(Curso::class)->getAllCursos();
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('web/travel-tech-skills/travel-tech-skills.html.twig', [
                 'contoller_name' => 'WebController', 'cursos' => $cursos
             ]);
+
         }
-        
     }
 
-    public function infoDeCurso():Response {
+    public function infoDeCurso(): Response{
 
         return $this->render('web/travel-tech-skills/infoDeCurso.html.twig');
 
     }
 
-    public function objetivos(EntityManagerInterface $em, int $id):Response {
-        try{
+    public function objetivos(EntityManagerInterface $em, int $id): Response{
+
+        try {
+
             $objetivos = $em->getRepository(Curso::class)->objetivos($id);
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('web/travel-tech-skills/objetivos.html.twig', [
                 'contoller_name' => 'WebController', 'objetivos' => $objetivos
             ]);
-        }
 
+        }
     }
 
-    public function competenciasBasicas(EntityManagerInterface $em, int $id):Response {
-        try{
+    public function competenciasBasicas(EntityManagerInterface $em, int $id): Response{
+
+        try {
+
             $competenciasBasicas = $em->getRepository(Curso::class)->competenciasBasicas($id);
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('web/travel-tech-skills/competenciasBasicas.html.twig', [
                 'contoller_name' => 'WebController', 'competenciasBasicas' => $competenciasBasicas
             ]);
-        }
 
+        }
     }
 
-    public function competenciasGenerales(EntityManagerInterface $em, int $id):Response {
-        try{
+    public function competenciasGenerales(EntityManagerInterface $em, int $id): Response{
+
+        try {
+
             $competenciasGenerales = $em->getRepository(Curso::class)->competenciasGenerales($id);
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('web/travel-tech-skills/competenciasGenerales.html.twig', [
                 'contoller_name' => 'WebController', 'competenciasGenerales' => $competenciasGenerales
             ]);
-        }
 
+        }
     }
 
-    public function competenciasEspecificas(EntityManagerInterface $em, int $id):Response {
-        try{
+    public function competenciasEspecificas(EntityManagerInterface $em, int $id): Response{
+
+        try {
+
             $competenciasEspecificas = $em->getRepository(Curso::class)->competenciasEspecificas($id);
-        } catch(Throwable $e){
+
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('web/travel-tech-skills/competenciasEspecificas.html.twig', [
                 'contoller_name' => 'WebController', 'competenciasEspecificas' => $competenciasEspecificas
             ]);
-        }
 
+        }
     }
 
-    public function usuarios(EntityManagerInterface $em):Response {
-        try{
+    public function usuarios(EntityManagerInterface $em): Response{
+
+        try {
+
             $prueba = $em->getRepository(Usuario::class)->usuarios();
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('web/travel-tech-skills/prueba.html.twig', [
                 'contoller_name' => 'WebController', 'pruebas' => $prueba
             ]);
-        }
 
+        }
     }
 
     // ****************************************************CAMPUS CONTROLLERS****************************************************
@@ -191,43 +222,78 @@ class WebController extends AbstractController{
     //     ]);
 
     // }
-    
+
     public function botonAltaAdmin(){
-    
+
         return $this->render('admin/botonAltaAdmin.html.twig');
     }
 
     public function alta(){
+
         $usuario = new Usuario();
         $form = $this->createForm(AltaFormType::class, $usuario);
-    
+
         return $this->render('admin/crearUsuario.html.twig', ['usuario_form' => $form->createView()]);
+
     }
-    
-    
+
+    public function curso(){
+
+        return $this->render('campus/Curso.html.twig');
+
+    }
+
+    public function infoCurso(EntityManagerInterface $em, $nombreC): Response{
+
+        try {
+
+            $infoCurso = $em->getRepository(Curso::class)->getCursoPorNombre($nombreC);
+
+        } catch (Throwable $e) {
+
+            echo "Error: " . $e . "<br>";
+
+        } finally {
+
+            return $this->render('campus/infoCurso.html.twig', ['curso' => $infoCurso]);
+
+        }
+
+    }
+
+
+
     public function uploadUser(UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em){
-        try{
+
+        try {
+
             $email = $_POST["email"];
-            $rol = $_POST["rol"]; $rol = '["' . $rol . '"]';
-    
+            $rol = $_POST["rol"];
+            $rol = '["' . $rol . '"]';
+
             $contraseña = $_POST["password"];
             $aux = new Usuario();
             $cifrada = $passwordHasher->hashPassword($aux, $contraseña);
 
             $em->getRepository(Usuario::class)->altaUsuario($rol, $cifrada, $email);
-    
-        }catch(Throwable $e){
+
+        } catch (Throwable $e) {
+
             echo "Error: " . $e . "<br>";
-    
-        }finally{
+
+        } finally {
+
             $usuario = new Usuario();
             $form = $this->createForm(AltaFormType::class, $usuario);
             return $this->render('admin/crearUsuario.html.twig', ['usuario_form' => $form->createView()]);
+
         }
     }
 
-    public function campus(EntityManagerInterface $em):Response {
-        try{
+    public function campus(EntityManagerInterface $em): Response{
+
+        try {
+
             $emailAux = $this->getUser()->getEmail();
             $idUser = $em->getRepository(Usuario::class)->getUsuarioPorEmail($emailAux);
             //dd($idUser[0]['id']);
@@ -238,31 +304,29 @@ class WebController extends AbstractController{
             // }
             //dd($idCurso[3]['id_curso_id']);
             $cursos = [];
-            for($i = 0; $i < sizeOf($idCurso); $i++){
+            for ($i = 0; $i < sizeOf($idCurso); $i++) {
                 $cursos[] = $em->getRepository(Curso::class)->getAllCursosPorId($idCurso[$i]['id_curso_id']);
             }
             //$cursos = $em->getRepository(Curso::class)->getAllCursosPorId($idCurso);
             //dd($cursos);
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('campus/cursos.html.twig', [
                 'contoller_name' => 'WebController', 'cursosAux' => $cursos
             ]);
+
         }
     }
 
-    public function infoCurso():Response {
+    public function info(EntityManagerInterface $em, int $id): Response{
 
-        return $this->render('campus/infoCurso.html.twig');
+        try {
 
-    }
-
-    public function info(EntityManagerInterface $em, int $id):Response {
-        try{
             $emailAux = $this->getUser()->getEmail();
             $idUser = $em->getRepository(Usuario::class)->getUsuarioPorEmail($emailAux);
             $info = $em->getRepository(Curso::class)->getEstado($idUser[0]['id'], $id);
@@ -271,155 +335,263 @@ class WebController extends AbstractController{
 
             $lugares = $em->getRepository(Lugares::class)->getAllLugares();
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('campus/estadoCurso.html.twig', [
-                'contoller_name' => 'WebController', 'info' => $info[0]['estado'], 'materiales' => $material, 'lugares' => $lugares,
+                'contoller_name' => 'WebController', 'info' => $info[0]['estado'], 'materiales' => $material, 'lugares' => $lugares, 'idCurso' => $id
             ]);
+
         }
     }
 
-    public function perfilInstructor(EntityManagerInterface $em):Response {
-        try{
+    public function pasos(EntityManagerInterface $em, int $id): Response{
+
+        try {
+
+            $emailAux = $this->getUser()->getEmail();
+            $idUser = $em->getRepository(Usuario::class)->getUsuarioPorEmail($emailAux);
+            $info = $em->getRepository(Curso::class)->getEstado($idUser[0]['id'], $id);
+
+        } catch (Throwable $e) {
+
+            echo "Error: " . $e . "<br>";
+
+        } finally {
+
+            return $this->render('campus/pasos.html.twig', [
+                'contoller_name' => 'WebController', 'info' => $info[0]['estado']
+            ]);
+
+        }
+    }
+
+    public function perfilInstructor(EntityManagerInterface $em): Response{
+
+        try {
+
             $emailAux = $this->getUser()->getEmail();
             $idInstructor = $em->getRepository(Usuario::class)->getUsuarioPorEmail($emailAux);
 
             $alumnosId = $em->getRepository(InstructorUsuario::class)->getAlumnosIdPorInstructorId($idInstructor[0]['id']);
-            //dd($alumnosId);
 
             $alumnos = [];
-            for($i = 0; $i < sizeOf($alumnosId); $i++){
+            for ($i = 0; $i < sizeOf($alumnosId); $i++) {
                 $alumnos[] = $em->getRepository(Usuario::class)->getAlumnosPorId($alumnosId[$i]['alumno_id']);
             }
-            //dd($alumnos);
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('instructor/perfilInstructor.html.twig', [
                 'contoller_name' => 'WebController', 'alumnosAux' => $alumnos,
             ]);
+
         }
     }
 
-    public function infoAlumno(EntityManagerInterface $em, int $id, string $nombre, array $alumno):Response {
-        try{
+    public function infoAlumno(EntityManagerInterface $em, int $id, string $nombre, array $alumno): Response{
+
+        try {
+
             $cursosAlumnos = $em->getRepository(Curso::class)->getAllInfoCursosParaUnUsuario($id);
 
             $cursos = [];
-            for($i = 0; $i < sizeOf($cursosAlumnos); $i++){
+            for ($i = 0; $i < sizeOf($cursosAlumnos); $i++) {
                 $cursos[] = $em->getRepository(Curso::class)->getAllCursosPorId($cursosAlumnos[$i]['id_curso_id']);
             }
-            
+
             $activos = [];
-            for($i = 0; $i < sizeOf($cursosAlumnos); $i++){
+            for ($i = 0; $i < sizeOf($cursosAlumnos); $i++) {
                 $activos[] = $em->getRepository(InstructorUsuario::class)->getUsuariosPorId($cursosAlumnos[$i]['id_usuario_id']);
             }
 
             $reservasAlumnos = $em->getRepository(Usuario::class)->getReservasAlumnosPorId($id);
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('instructor/infoAlumno.html.twig', [
                 'contoller_name' => 'WebController', 'cursosAlumnos' => $cursosAlumnos, 'reservasAlumnos' => $reservasAlumnos,
                 'cursosAux' => $cursos, 'nombre' => $nombre, 'alumno' => $alumno, 'activos' => $activos[0], 'idAlumno' => $id
             ]);
+
         }
     }
 
-    public function infoAlumnoInactivo(EntityManagerInterface $em, int $id, string $nombre, array $alumno):Response {
-        try{
+    public function infoAlumnoInactivo(EntityManagerInterface $em, int $id, string $nombre, array $alumno): Response{
+
+        try {
+
             $cursosAlumnos = $em->getRepository(Curso::class)->getAllInfoCursosParaUnUsuario($id);
 
             $cursos = [];
-            for($i = 0; $i < sizeOf($cursosAlumnos); $i++){
+            for ($i = 0; $i < sizeOf($cursosAlumnos); $i++) {
                 $cursos[] = $em->getRepository(Curso::class)->getAllCursosPorId($cursosAlumnos[$i]['id_curso_id']);
             }
-            
+
             $activos = [];
-            for($i = 0; $i < sizeOf($cursosAlumnos); $i++){
+            for ($i = 0; $i < sizeOf($cursosAlumnos); $i++) {
                 $activos[] = $em->getRepository(InstructorUsuario::class)->getUsuariosPorId($cursosAlumnos[$i]['id_usuario_id']);
             }
 
             $reservasAlumnos = $em->getRepository(Usuario::class)->getReservasAlumnosPorId($id);
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('instructor/infoAlumnoNoActivo.html.twig', [
                 'contoller_name' => 'WebController', 'cursosAlumnos' => $cursosAlumnos, 'reservasAlumnos' => $reservasAlumnos,
                 'cursosAux' => $cursos, 'nombre' => $nombre, 'alumno' => $alumno, 'activos' => $activos[0]
             ]);
+
         }
     }
 
-    public function modificarEstado(EntityManagerInterface $em):Response {
+    public function modificarEstado(EntityManagerInterface $em): Response{
 
         $estado = $_POST["estado"];
         $id = $_POST["id"];
-        
-        try{
+
+        try {
+
             $em->getRepository(Usuario::class)->modificarEstado($id, $estado);
-            
+
             $emailAux = $this->getUser()->getEmail();
 
             $idInstructor = $em->getRepository(Usuario::class)->getUsuarioPorEmail($emailAux);
 
             $alumnosId = $em->getRepository(InstructorUsuario::class)->getAlumnosIdPorInstructorId($idInstructor[0]['id']);
             $alumnos = [];
-            
-            for($i = 0; $i < sizeOf($alumnosId); $i++){
+
+            for ($i = 0; $i < sizeOf($alumnosId); $i++) {
                 $alumnos[] = $em->getRepository(Usuario::class)->getAlumnosPorId($alumnosId[$i]['alumno_id']);
             }
 
-        } catch(Throwable $e){
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
+        } finally {
+
             return $this->render('instructor/perfilInstructor.html.twig', [
                 'contoller_name' => 'WebController', 'alumnosAux' => $alumnos,
             ]);
+
         }
     }
 
-    public function reservar(EntityManagerInterface $em):Response {
+    public function reservar(EntityManagerInterface $em): Response{
 
         $fecha = $_POST["fecha"];
         $hora = $_POST["hora"];
+        $reserva = $fecha . " " . $hora;
         $lugar = $_POST["lugar"];
+        $idCurso = $_POST["idCurso"];
 
-        dd($fecha, $hora);
-        
-        try{
+        try {
+
             $emailAux = $this->getUser()->getEmail();
             $id = $em->getRepository(Usuario::class)->getUsuarioPorEmail($emailAux);
 
-            $em->getRepository(Reserva::class)->addReserva($fecha,);
-            
-            
+            $idLugar = $em->getRepository(Lugares::class)->getLugarIdPorNombre($lugar);
 
-        } catch(Throwable $e){
+            $em->getRepository(Reserva::class)->addReserva($id[0]['id'], $reserva, $idLugar[0]['id'], $idCurso);
+
+            $em->getRepository(Usuario::class)->modificarEstado($id[0]['id'], '3 Espera resultados autoevaluación');
+            //dd('esto');
+
+            $infoCurso = $em->getRepository(Curso::class)->getAllCursosPorId($idCurso[0]);
+            //dd($infoCurso);
+
+        } catch (Throwable $e) {
 
             echo "Error: " . $e . "<br>";
 
-        } finally{
-            return $this->render('campus/infoCurso.html.twig');
+        } finally {
+
+            return $this->render('campus/curso.html.twig', [ 'contoller_name' => 'WebController', 'curso' => $infoCurso[0], ]);
+
         }
     }
 
+    public function contactoForm(EntityManagerInterface $em, UserPasswordHasherInterface $passwordHasher): Response{
 
+        $error = "";
 
+        $nombre = $_POST["nombre"];
 
+        $rolAux = "ROLE_USER";
+        $rol = '["' . $rolAux . '"]';
 
+        $userAux = new Usuario();
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $contraseña = '';
+        for ($i = 0; $i < 10; $i++) {
+            $index = rand(0, strlen($characters) - 1);
+            $contraseña .= $characters[$index];
+        }
+        $password = $passwordHasher->hashPassword($userAux, $contraseña);
+
+        $correo = $_POST["correo"];
+        $apellidos = $_POST["apellidos"];
+        $cp = $_POST["cp"];
+        $genero = $_POST["genero"];
+        $estudios = $_POST["estudios"];
+        $areaTitulo = $_POST["areaTitulo"];
+        $empresa = $_POST["empresa"];
+        $cargo = $_POST["cargo"];
+        $almaMater = $_POST["almaMater"];
+        $interes = $_POST["interes"];
+        $telefono = $_POST["telefono"];
+        $conoce = $_POST["conoce"];
+        $tipoContacto = $_POST["tipoContacto"];
+
+        if($_POST["comunicaciones"] == 'on'){
+            $comunicaciones = 1;
+        }else{
+            $comunicaciones = 0;
+        }
+
+        if($_POST["datos"] == 'on'){
+            $datos = 1;
+        }else{
+            $datos = 0;
+        }
+
+        $tramitado = "off";
+
+        // dd($nombre, $rol, $password, $correo, $apellidos, $cp, $genero, $estudios, $areaTitulo, 
+        //     $empresa, $cargo, $almaMater, $interes, $telefono, $conoce, $tipoContacto, $comunicaciones, $datos);
+
+        try {
+
+            $em->getRepository(Usuario::class)->contactoForm($nombre, $rol, $password, $correo, $apellidos, $cp, $genero, $estudios, $areaTitulo, 
+            $empresa, $cargo, $almaMater, $interes, $telefono, $conoce, $tipoContacto, $comunicaciones, $datos, $tramitado);
+
+        } catch (Throwable $e) {
+            
+            $error = "Error en la creación del usuario, compruebe que el correo o el nombre utilizado no pertenezca ya a una cuenta en uso";
+            //echo "Error: " . $e . "<br>";
+
+        } finally {
+
+            return $this->render('web/contacto.html.twig', [
+                'contoller_name' => 'WebController', 'error' => $error,
+            ]);
+
+        }
+    }
 }

@@ -16,6 +16,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 use Doctrine\ORM\EntityManagerInterface;
+use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordEncoderInterface;
@@ -27,17 +28,17 @@ class UsuarioCrudController extends AbstractCrudController
         return Usuario::class;
     }
 
-    // public function configureCrud(Crud $crud): Crud {
-    //     return $crud -> addFormTheme('base.html.twig');
-    // }
-
     public function configureFields(string $pageName): iterable{
 
         yield IdField::new('id') -> onlyOnIndex();
+        yield BooleanField::new('tramitado');
         yield TextField::new('nombre');
+        yield TextField::new('apellidos');
         yield EmailField::new('email');
         yield ArrayField::new('roles') -> onlyOnIndex();
-        yield TextField::new('password') -> onlyOnIndex();
+        yield BooleanField::new('comunicaciones');
+        yield BooleanField::new('procesar_almacenar_datos');
+        //yield TextField::new('password') -> onlyOnIndex();
 
     }
 

@@ -4,6 +4,239 @@
 
     {{ include('components/navbar.html.twig') }}
 
+    <style>
+
+        /* Chrome, Safari, Edge, Opera */
+        .number::-webkit-outer-spin-button,
+        .number::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        /* Firefox */
+        .number[type=number] {
+            -moz-appearance: textfield;
+        }
+    
+    </style>
+
+    <img src="images/fondos/portadaContacto.jpeg" style="object-fit: cover;width:100%;height:500px" alt=""><br><br><br>
+
+    <form action="contactoForm" method="post">
+
+        <div class="container">
+
+            {# <h4 style="text-align:center;">Registrar nuevo usuario</h4><br> #}
+
+            {% if error != "" %}
+
+                <div class="alert alert-danger" style="text-align:center;">
+                    <strong>{{ error }}</strong>.
+                </div>
+
+            {% endif %}
+
+            <div class="row">
+
+                <div class="col-sm-2"></div>
+
+                <div class="col-sm-8">
+
+                    <h2>Contacta con nosotros</h2><br>
+
+
+                    <br><h4 style="text-align:center;">Demográficos</h4><br>
+                    <div class="row">
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="nombre">Nombre *</label>
+                            <input type="text" name="nombre" id="nombre" class="form-control" required><br>
+                        
+                        </div>
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="apellidos">Apellidos *</label>
+                            <input type="text" name="apellidos" id="apellidos" class="form-control" required><br>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="cp">CP *</label>
+                            <input type="number" name="cp" id="cp" class="form-control number" required><br>
+
+                        </div>
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="genero">Género *</label>
+                            <select class="form-select" id="genero" name="genero" required>
+                                <option>Mujer</option>
+                                <option>Hombre</option>
+                                <option>No binario</option>
+                                <option>Prefiero no decirlo</option>
+                            </select>
+
+                        </div>
+
+                    </div>
+
+
+                    <br><h4 style="text-align:center;">Información académica/profesional</h4><br>
+                    <div class="row">
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="estudios">Nivel de estudios *</label>
+                            <select class="form-select" id="estudios" name="estudios" required>
+                                <option>Sin estudios</option>
+                                <option>Grado escolar</option>
+                                <option>Bachillerato</option>
+                                <option>FP básico</option>
+                                <option>FP medio</option>
+                                <option>FP superior</option>
+                                <option>Estudios universitarios de ciclo corto</option>
+                                <option>Estudios universitarios de ciclo largo</option>
+                                <option>Máster</option>
+                                <option>Doctorado</option>
+                            </select>
+
+                        </div>
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="areaTitulo">Área/Título *</label>
+                            <input type="text" name="areaTitulo" id="areaTitulo" class="form-control" required><br>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="empresa">Empresa *</label>
+                            <input type="text" name="empresa" id="empresa" class="form-control" required><br>
+                        
+                        </div>
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="cargo">Cargo *</label>
+                            <input type="text" name="cargo" id="cargo" class="form-control" required><br>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="row">
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="almaMater">Alma Mater *</label>
+                            <input type="text" name="almaMater" id="almaMater" class="form-control" required><br>
+
+                        </div>
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="interes">Áreas de interés *</label>
+                            <input type="text" name="interes" id="interes" class="form-control" required><br>
+
+                        </div>
+
+                    </div>
+
+
+                    <br><h4 style="text-align:center;">Información de contacto</h4><br>
+                    <div class="row">
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="correo">Correo *</label>
+                    <input type="email" name="correo" id="correo" class="form-control" required><br>
+
+                        </div>
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="telefono">Teléfono *</label>
+                    <input type="number" name="telefono" id="telefono" class="form-control number" required><br>
+
+                        </div>
+
+                    </div>
+
+
+                    <br><h4 style="text-align:center;">Relación y contacto</h4><br>
+                    <div class="row">
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="conoce">¿Cómo nos conoce?*</label>
+                            <label for="conoce">A través de:</label>
+                            <select class="form-select" id="conoce" name="conoce" required>
+                                <option>RRSS</option>
+                                <option>Página web</option>
+                                <option>ULPGC</option>
+                                <option>Recomendación de un conocido</option>
+                            </select><br>
+
+                        </div>
+
+                        <div class="col-md-12 col-xl-6">
+
+                            <label for="tipoContacto">Tipo de contacto *</label>
+                            <select class="form-select" id="tipoContacto" name="tipoContacto" required>
+                                <option>Estudiante</option>
+                                <option>Partner</option>
+                                <option>Otros</option>
+                            </select>
+
+                        </div>
+
+                    </div><br><br>
+
+
+                    <p>Travel Tech School by Amadeus se compromete a proteger y respetar tu privacidad, y solo usaremos tu información personal para administrar tu cuenta y proporcionar los productos y servicios que nos solicitaste. De vez en cuando, nos gustaría ponernos en contacto contigo acerca de nuestros productos y servicios, así como sobre otros contenidos que puedan interesarte. Si aceptas que nos comuniquemos contigo para este fin, marca la casilla a continuación para indicar cómo deseas que nos comuniquemos:</p>
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="comunicaciones" required> Acepto recibir otras comunicaciones de Travel Tech School by Amadeus.
+                    </label>
+
+                    <br><br>
+
+                    <p>Para poder proporcionarte el contenido solicitado, debemos almacenar y procesar tus datos personales. Si aceptas que almacenemos tus datos personales para este fin, marca la casilla de abajo.</p>
+                    <label class="form-check-label">
+                        <input class="form-check-input" type="checkbox" name="datos" required> Acepto permitir a Travel Tech School by Amadeus almacenar y procesar mis datos personales.
+                    </label><br>
+                    <p>Puedes darte de baja de estas comunicaciones en cualquier momento. Para obtener más información sobre cómo darte de baja, nuestras prácticas de privacidad y cómo nos comprometemos a proteger y respetar tu privacidad, consulta nuestra Política de privacidad.</p>
+
+                    <br><br>
+
+                    <div style="text-align:center;">
+                        <button type="submit" class="btn btn-lg btn-primary"> Enviar </button><br><br><br><br>
+                    </div>
+
+                </div>
+
+                <div class="col-sm-2"></div>
+
+            </div>
+
+        </div>
+    
+    </form>
+
     {{ include('components/footer.html.twig') }}
 
 {% endblock %}

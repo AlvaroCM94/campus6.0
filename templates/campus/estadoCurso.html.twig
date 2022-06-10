@@ -45,29 +45,14 @@
 
     <form action="reservar" method="post">
 
+        <input type="text" name="idCurso" id="idCurso" class="form-control" value="{{ idCurso }}" hidden required>
+
         <div class="row">
 
             <div class='col-sm-3'>
 
                 <label for="fecha">Día</label>
                 <input type="date" name="fecha" id="fecha" class="form-control" required>
-
-                <script>
-                    var today = new Date();
-                    var dd = today.getDate();
-                    var mm = today.getMonth()+1;
-                    var yyyy = today.getFullYear();
-                    if(dd<10){
-                        dd='0'+dd
-                    } 
-                    if(mm<10){
-                        mm='0'+mm
-                    }
-
-                    today = yyyy+'-'+mm+'-'+dd;
-                    document.getElementById("fecha").setAttribute("min", today);
-                    document.getElementById("fecha").setAttribute("value", today);
-                </script>
 
             </div>
 
@@ -76,9 +61,66 @@
                 <label for="hora">Hora</label>
                 <input type="time" name="hora" id="hora" class="form-control" value="09:00" min="09:00" max="14:00" required>
 
-                {# <script>
-                    document.getElementById("hora").step = "30";
-                </script> #}
+                <script>
+
+                    /************* DIA MES AÑO *************/
+
+                    let today = new Date();
+                    let dd = today.getDate();
+                    let mm = today.getMonth() +1;
+                    let yyyy = today.getFullYear();
+
+                    if(dd < 10){
+                        dd = '0' + dd;
+                    } 
+
+                    if(mm < 10){
+                        mm = '0' + mm;
+                    }
+
+                    today = yyyy + '-' + mm + '-' + dd;
+                    console.log(today);
+                    document.getElementById("fecha").setAttribute("min", today);
+                    document.getElementById("fecha").setAttribute("value", today);
+
+                    /************* HORA MINUTOS *************/
+
+                    let horaHoy = new Date();
+                    let hora = horaHoy.getHours();
+                    let min = horaHoy.getMinutes();
+
+                    horaHoy = hora + ":" + min;
+
+                    if(horaHoy > "09:00" && horaHoy < "14:00"){
+
+                        document.getElementById("hora").setAttribute("min", horaHoy);
+                        document.getElementById("hora").setAttribute("value", horaHoy);
+
+                    }else{
+                        
+                        let date = new Date();
+                        date.setDate(date.getDate() + 1);
+
+                        let ddN = date.getDate();
+                        let mmN = date.getMonth() +1;
+                        let yyyyN = date.getFullYear();
+
+                        if(ddN < 10){
+                            ddN = '0' + ddN;
+                        } 
+
+                        if(mmN < 10){
+                            mmN = '0' + mmN;
+                        }
+
+                        let res = yyyyN + '-' + mmN + '-' + ddN;
+                        console.log(res);
+                        document.getElementById("fecha").setAttribute("min", res);
+                        document.getElementById("fecha").setAttribute("value", res);
+
+                    }
+
+                </script>
 
 
             </div>
@@ -113,7 +155,7 @@
 
 {% elseif info == '3 Espera resultados autoevaluación' %}
 
-    <p>3</p>
+    <p>A la espera de la confimación de su cita.</p>
 
 {% elseif info == '4 Explicación videoconferencia' %}
 

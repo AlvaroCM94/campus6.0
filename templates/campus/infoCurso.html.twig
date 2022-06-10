@@ -1,75 +1,29 @@
-{% extends 'base.html.twig' %}
+{# {% extends 'base.html.twig' %}
 
 {% set current_path = app.request.get('curso') %}
 
 {% block title %}{{ current_path['nombre'] }}{% endblock %}
 
 {% block body %}
-    {{ include('components/navbar.html.twig') }}
+    {{ include('components/navbar.html.twig') }} #}
 
-    <img src="/images/talleres/hubspot.jpg" alt="{{ current_path['nombre'] }}" style="object-fit: cover;width:100%; height:300px">
+    {% for c in curso  %}
+
+        <img src="/images/talleres/hubspot.jpg" alt="{{ c.nombre }}" style="object-fit: cover;width:100%; height:300px">
 
         <div class="row">
             <div class="col-sm-10" id="ColumnaDerCurso">
                 <div class="container">
                     <br><br>
 
-                    {% set idAux = current_path['id'] %}
 
-                    <h1>{{ current_path['nombre'] }}</h1>
-
-                    {# {% set auxs = current_path['descripcion']|split('\r\n') %}
-                    {% for aux in auxs %}
-
-                        <p>{{ aux }}</p>
-                    
-                    {% endfor %}
-
-                    <h3>Competencias</h3>
-                    {% set auxs = current_path['competencias']|split('\r\n') %}
-                    {% for aux in auxs %}
-
-                        <p>{{ aux }}</p>
-                    
-                    {% endfor %}
-
-                    <h4>Objetivos</h4>
-                    {{ render(controller(
-                        'App\\Controller\\WebController::objetivos' , {id: idAux}
-                    )) }}
-
-                    <h4>Competencias básicas</h4>
-                    {{ render(controller(
-                        'App\\Controller\\WebController::competenciasBasicas' , {id: idAux}
-                    )) }}
-
-                    <h4>Competencias generales</h4>
-                    {{ render(controller(
-                        'App\\Controller\\WebController::competenciasGenerales' , {id: idAux}
-                    )) }}
-
-                    <h4>Competencias específicas</h4>
-                    {{ render(controller(
-                        'App\\Controller\\WebController::competenciasEspecificas' , {id: idAux}
-                    )) }}
-
-                    <h3>Dinámicas</h3>
-                    {% set auxs = current_path['dinamicas']|split('\r\n') %}
-                    {% for aux in auxs %}
-
-                        <p>{{ aux }}</p>
-                        
-                    {% endfor %}
-
-                    <h3>Tabla de contenidos</h3>
-                    
-
-                    <hr> #}
+                    <h1 style="text-align: center">{{ c.nombre }}</h1><br>
 
                     <h2>Material</h2>
 
                     <hr>
-
+                    
+                    {% set idAux = c.id %}
                     {{ render(controller(
                         'App\\Controller\\WebController::info', {id: idAux}
                     )) }}
@@ -79,12 +33,20 @@
 
             <div class="col-sm-2" id="ColumnaIzqCurso">
                 <div class="sticky-top">
-                    <p><b>Duración: </b> {{ current_path['duracion'] }} horas</p>
-                    <p><b>Valoración: </b> {{ current_path['valoracion'] }}/5</p>
-                    <p><b>Participantes: </b> {{ 1 }}</p>
+                    <p><b>Duración: </b> {{ c.duracion }} horas</p>
+                    <p><b>Valoración: </b> {{ c.valoracion }}/5</p>
+                    
+                    {{ render(controller(
+                        'App\\Controller\\WebController::pasos', {id: idAux}
+                    )) }}
+
                 </div>
             </div>
 
         </div>
 
-{% endblock %}
+    {% endfor %}
+
+    
+
+{# {% endblock %} #}

@@ -128,11 +128,15 @@
                         {% elseif app.user.roles[0] == "ROLE_ADMIN" %}
 
                             <li class="nav-item">
+                                <a class="nav-link" href="campusUsuario">Campus</a>
+                            </li>
+
+                            <li class="nav-item">
                                 <a class="nav-link" href="admin">Administración</a>
                             </li>
 
                             <li class="nav-item">
-                                <a class="nav-link" href="">{{ app.user.email }}</a>
+                                <a class="nav-link">{{ app.user.email }}</a>
                             </li>
 
                         {% endif %}

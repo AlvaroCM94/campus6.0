@@ -49,6 +49,51 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'id_instructor', targetEntity: Chat::class)]
     private $chat_instructor;
 
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $apellidos;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $cp;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $genero;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $nivel_estudios;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $area_titulo;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $empresa;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $cargo;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $alma_mater;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $areas_interes;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $telefono;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $como_conoce;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $tipo_contacto;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $comunicaciones;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $procesar_almacenar_datos;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $tramitado;
+
     public function __construct()
     {
         $this->usuarioCursos = new ArrayCollection();
@@ -344,6 +389,186 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
                 $chatInstructor->setIdInstructor(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getApellidos(): ?string
+    {
+        return $this->apellidos;
+    }
+
+    public function setApellidos(?string $apellidos): self
+    {
+        $this->apellidos = $apellidos;
+
+        return $this;
+    }
+
+    public function getCp(): ?int
+    {
+        return $this->cp;
+    }
+
+    public function setCp(?int $cp): self
+    {
+        $this->cp = $cp;
+
+        return $this;
+    }
+
+    public function getGenero(): ?string
+    {
+        return $this->genero;
+    }
+
+    public function setGenero(?string $genero): self
+    {
+        $this->genero = $genero;
+
+        return $this;
+    }
+
+    public function getNivelEstudios(): ?string
+    {
+        return $this->nivel_estudios;
+    }
+
+    public function setNivelEstudios(?string $nivel_estudios): self
+    {
+        $this->nivel_estudios = $nivel_estudios;
+
+        return $this;
+    }
+
+    public function getAreaTitulo(): ?string
+    {
+        return $this->area_titulo;
+    }
+
+    public function setAreaTitulo(?string $area_titulo): self
+    {
+        $this->area_titulo = $area_titulo;
+
+        return $this;
+    }
+
+    public function getEmpresa(): ?string
+    {
+        return $this->empresa;
+    }
+
+    public function setEmpresa(?string $empresa): self
+    {
+        $this->empresa = $empresa;
+
+        return $this;
+    }
+
+    public function getCargo(): ?string
+    {
+        return $this->cargo;
+    }
+
+    public function setCargo(?string $cargo): self
+    {
+        $this->cargo = $cargo;
+
+        return $this;
+    }
+
+    public function getAlmaMater(): ?string
+    {
+        return $this->alma_mater;
+    }
+
+    public function setAlmaMater(?string $alma_mater): self
+    {
+        $this->alma_mater = $alma_mater;
+
+        return $this;
+    }
+
+    public function getAreasInteres(): ?string
+    {
+        return $this->areas_interes;
+    }
+
+    public function setAreasInteres(?string $areas_interes): self
+    {
+        $this->areas_interes = $areas_interes;
+
+        return $this;
+    }
+
+    public function getTelefono(): ?int
+    {
+        return $this->telefono;
+    }
+
+    public function setTelefono(?int $telefono): self
+    {
+        $this->telefono = $telefono;
+
+        return $this;
+    }
+
+    public function getComoConoce(): ?string
+    {
+        return $this->como_conoce;
+    }
+
+    public function setComoConoce(?string $como_conoce): self
+    {
+        $this->como_conoce = $como_conoce;
+
+        return $this;
+    }
+
+    public function getTipoContacto(): ?string
+    {
+        return $this->tipo_contacto;
+    }
+
+    public function setTipoContacto(?string $tipo_contacto): self
+    {
+        $this->tipo_contacto = $tipo_contacto;
+
+        return $this;
+    }
+
+    public function isComunicaciones(): ?bool
+    {
+        return $this->comunicaciones;
+    }
+
+    public function setComunicaciones(?bool $comunicaciones): self
+    {
+        $this->comunicaciones = $comunicaciones;
+
+        return $this;
+    }
+
+    public function isProcesarAlmacenarDatos(): ?bool
+    {
+        return $this->procesar_almacenar_datos;
+    }
+
+    public function setProcesarAlmacenarDatos(?bool $procesar_almacenar_datos): self
+    {
+        $this->procesar_almacenar_datos = $procesar_almacenar_datos;
+
+        return $this;
+    }
+
+    public function isTramitado(): ?bool
+    {
+        return $this->tramitado;
+    }
+
+    public function setTramitado(?bool $tramitado): self
+    {
+        $this->tramitado = $tramitado;
 
         return $this;
     }

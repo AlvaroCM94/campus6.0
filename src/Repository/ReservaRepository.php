@@ -39,11 +39,11 @@ class ReservaRepository extends ServiceEntityRepository
         }
     }
 
-    public function addReserva($id){
+    public function addReserva($idUsuario, $reserva, $idLugar, $idCurso){
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = "INSERT INTO usuario (roles, password, email)
-        VALUES ('', '', '')";
+        $sql = "INSERT INTO reserva (id_usuario_id, id_curso_id, lugar_id, fecha)
+        VALUES ('$idUsuario', '$idCurso', '$idLugar', '$reserva')";
 
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
