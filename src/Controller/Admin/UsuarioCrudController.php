@@ -33,12 +33,11 @@ class UsuarioCrudController extends AbstractCrudController
         yield IdField::new('id') -> onlyOnIndex();
         yield BooleanField::new('tramitado');
         yield TextField::new('nombre');
-        yield TextField::new('apellidos');
+        //yield TextField::new('apellidos');
         yield EmailField::new('email');
         yield ArrayField::new('roles') -> onlyOnIndex();
-        yield BooleanField::new('comunicaciones');
-        yield BooleanField::new('procesar_almacenar_datos');
-        //yield TextField::new('password') -> onlyOnIndex();
+        yield BooleanField::new('comunicaciones') -> renderAsSwitch( false );
+        yield BooleanField::new('procesar_almacenar_datos') -> renderAsSwitch( false );
 
     }
 
@@ -47,45 +46,14 @@ class UsuarioCrudController extends AbstractCrudController
             ->update(Crud::PAGE_INDEX, Action::NEW, function (Action $action) {
                 return $action->setTemplatePath('admin/botonAltaAdmin.html.twig');
             })
+            // ->update(Crud::PAGE_INDEX, Action::EDIT, function (Action $action) {
+            //     return $action->setTemplatePath('admin/botonEditarAdmin.html.twig');
+            // })
+            ->add(Crud::PAGE_EDIT, Action::DETAIL)
+            ->update(Crud::PAGE_EDIT, Action::DETAIL, function (Action $action) {
+                return $action->setTemplatePath('admin/botonEditarAdmin.html.twig');
+            })
         ;
     }
 
-    // public function configureCrud(): Crud{
-    //     return Crud::new()
-
-    //         ->overrideTemplates([
-    //             'crud/new' => 'admin/crearUsuario.html.twig'
-    //         ])
-    //     ;
-    // }
-
-    // public function createEntity(string $entityFqcn){
-    //     $usuario = new Usuario();
-    //     $form = $this->createForm(AltaFormType::class, $usuario);
-    //     return $this->render('admin/crearUsuario.html.twig', ['usuario_form' => $form->createView()]);
-    //     // return $this->render('web/travel-tech-skills/prueba.html.twig');
-    // }
-
-    // public function persistEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    // {
-    //     $this->encodePassword($entityInstance);
-    //     parent::persistEntity($entityManager, $entityInstance);
-    // }
-
-    // public function updateEntity(EntityManagerInterface $entityManager, $entityInstance): void
-    // {
-    //     $this->encodePassword($entityInstance);
-    //     parent::updateEntity($entityManager, $entityInstance);
-    // }
-
-    // //private $passwordEncoder = new UserPasswordHasherInterface;
-    // private function encodePassword(Usuario $user)
-    // {
-    //     //$passwordEncoder = new UserPasswordHasherInterface;
-    //     if ($user->getPassword() !== null) {
-    //         // $user->setSalt(base_convert(bin2hex(random_bytes(20)), 16, 36));
-    //         // This is where you use UserPasswordEncoderInterface
-    //         $user->setPassword($this->passwordEncoder->encodePassword($user, $user->getPassword()));
-    //     }
-    // }
 }

@@ -12,7 +12,21 @@
             
                 <div class="p-2">
                     <div class="card " style="width:400px;">
-                        <img id="i1" class="card-img-top" src="/images/talleres/hubspot.jpg" alt="Card image" style="width:100%;">
+
+                        {% set imagen = curso.imagen|split('/d/') %}
+                        {% set imgFin = '' %}
+
+                        {% for i in imagen %}
+
+                            {% if i != "https://drive.google.com/file" %}
+
+                                {% set imgFin = i|split('/view') %}
+                                <img id="i1" class="card-img-top" src="https://drive.google.com/uc?export=view&id={{ imgFin[0] }}" alt="{{ curso.nombre }} imagen" style="width:100%; height:250px;">
+                            
+                            {% endif %}
+
+                        {% endfor %}
+
                         <div class="card-body">
 
                             <h4 class="card-title">{{ curso.nombre }}</h4>

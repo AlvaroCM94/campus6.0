@@ -6,9 +6,21 @@
 
 {% block body %}
 
-    <img src="/images/talleres/hubspot.jpg" alt="{{ current_path['nombre'] }}" style="object-fit: cover;width:100%; height:300px">
+    {{ include('components/navbar.html.twig') }}
 
-    
+    {% set imagen = current_path['imagen']|split('/d/') %}
+        {% set imgFin = '' %}
+
+        {% for i in imagen %}
+            
+            {% if i != "https://drive.google.com/file" %}
+            
+                {% set imgFin = i|split('/view') %}
+                <img src="https://drive.google.com/uc?export=view&id={{ imgFin[0] }}" alt="{{ current_path['nombre'] }} imagen" style="object-fit: cover;width:100%; height:300px">
+            
+            {% endif %}
+
+        {% endfor %}
 
     {# <div class="d-flex "> #}
 
@@ -84,11 +96,21 @@
             {# <div class="col-sm-1">
             </div> #}
 
-            <div class="col-sm-2" id="ColumnaIzqCurso">
+            <div class="col-sm-2" id="ColumnaIzqCurso" style="z-index: -1; box-shadow: 5px -25px 20px #0A72B8;">
                 <div class="sticky-top">
                     <p><b>Duración: </b> {{ current_path['duracion'] }} horas</p>
                     <p><b>Valoración: </b> {{ current_path['valoracion'] }}/5</p>
-                    <p><b>Participantes: </b> {{ 1 }}</p>
+
+                    {% if current_path['visibilidad'] == '1'%}
+
+                        <p><b>¡Ya puedes reservar tu plaza!</b></p>
+
+                    {% else %}
+
+                        <p><b>Este curso se impartirá pronto, pide mas informcaión en la sección de contacto.</b></p>
+
+                    {% endif %}
+                    
                 </div>
             </div>
 
@@ -105,5 +127,6 @@
 
     {# <p>{{ app.request.get('curso') }}</p> #}
     
+    {{ include('components/footer.html.twig') }}
 
 {% endblock %}

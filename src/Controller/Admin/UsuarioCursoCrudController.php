@@ -26,6 +26,8 @@ class UsuarioCursoCrudController extends AbstractCrudController
             '0 Curso sin pasos' => '0 Curso sin pasos',
             '1 Cuestionario inicial' => '1 Cuestionario inicial',
             '2 Reserva autoevaluación' => '2 Reserva autoevaluación',
+            '2.1 Esperando confirmación de reserva' => '2.1 Esperando confirmación de reserva',
+            '2.2 Reserva confirmada' => '2.2 Reserva confirmada',
             '3 Espera resultados autoevaluación' => '3 Espera resultados autoevaluación',
             '4 Explicación videoconferencia' => '4 Explicación videoconferencia',
             '5 Material entrenamiento' => '5 Material entrenamiento',

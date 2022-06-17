@@ -1,48 +1,1561 @@
 <style>
 
+    .step {
+        position: relative;
+        min-height: 1em;
+        color: gray;
+    }
 
+    .title {
+        line-height: 1.5em;
+        font-weight: bold;
+    }
+
+    .caption {
+        font-size: 0.8em;
+    }
+
+    .step + .step {
+        margin-top: 1.5em
+    }
+
+    .step > div:first-child {
+        position: static;
+        height: 0;
+    }
+
+    .step > div:not(:first-child) {
+        margin-left: 1.5em;
+        padding-left: 1em;
+    }
+
+    .circle {
+        background: gray;
+        position: relative;
+        width: 1.5em;
+        height: 1.5em;
+        line-height: 1.5em;
+        border-radius: 100%;
+        color: #fff;
+        text-align: center;
+        box-shadow: 0 0 0 3px #fff;
+    }
+
+    .circleLast {
+        background: gray;
+        position: relative;
+        width: 1.5em;
+        height: 1.5em;
+        line-height: 1.5em;
+        border-radius: 100%;
+        color: #fff;
+        text-align: center;
+        box-shadow: 0 0 0 3px #fff;
+    }
+
+    .circle:after {
+        content: ' ';
+        position: absolute;
+        display: block;
+        top: 1px;
+        right: 50%;
+        bottom: 1px;
+        left: 50%;
+        height: 100%;
+        width: 1px;
+        transform: scale(1, 2);
+        transform-origin: 50% -100%;
+        background-color: rgba(0, 0, 0, 0.25);
+        z-index: -1;
+    }
+
+    .step:last-child .circle:after {
+        display: none
+    }
+
+    .step.step-active {
+        color: #4285f4
+    }
+
+    .step.step-active .circle {
+        background-color: #4285f4;
+    }
+
+    .step.step-active .circleLast {
+        background-color: #4285f4;
+    }
 
 </style>
+{% if info == '0 Curso sin pasos'%}
+{% elseif info == '1 Cuestionario inicial' %}
 
-{% if info == '1 Cuestionario inicial' %}
+    <div class="step step-active">
 
-    <h5>Cuestionario inicial</h5>
+        <div>
+            <div class="circle">1</div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">2</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">3</div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">4</div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">5</div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">6</div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">7</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">8</div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
 
 {% elseif info == '2 Reserva autoevaluación' %}
 
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circle">2</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">3</div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">4</div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">5</div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">6</div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">7</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">8</div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
+
+{% elseif info == '2.1 Esperando confirmación de reserva' %}
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circle">2</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+            <div class="caption">Esperando confirmación de reserva</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">3</div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">4</div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">5</div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">6</div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">7</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">8</div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
+
+{% elseif info == '2.2 Reserva confirmada' %}
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circle">2</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+            <div class="caption">Esperando confirmación de reserva</div>
+            <div class="caption">Reserva confirmada</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">3</div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">4</div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">5</div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">6</div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">7</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">8</div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
 
 {% elseif info == '3 Espera resultados autoevaluación' %}
 
-    <p>A la espera de la confimación de su cita.</p>
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circle">3</div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">4</div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">5</div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">6</div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">7</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">8</div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
+    {# <p>A la espera de la confimación de su cita.</p> #}
 
 {% elseif info == '4 Explicación videoconferencia' %}
 
-    <p>4</p>
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circle">4</div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">5</div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">6</div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">7</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">8</div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
 
 {% elseif info == '5 Material entrenamiento' %}
 
-    <p>5</p>
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circle">5</div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">6</div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">7</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">8</div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
 
 {% elseif info == '6 Examen' %}
 
-    <p>6</p>
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circle">6</div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">7</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">8</div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
 
 {% elseif info == '7 Reserva entrenamientos' %}
 
-    <p>7</p>
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circle">7</div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">8</div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
 
 {% elseif info == '8 Videos' %}
 
-    <p>8</p>
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circle">8</div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
 
 {% elseif info == '9 Horario talleres' %}
 
-    <p>9</p>
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circle">9</div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circleLast">10</div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
 
 {% else %}
 
-    <p>10</p>
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Cuestionario inicial</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Espera resultados autoevaluación</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Explicación videoconferencia</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Material entrenamiento</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Examen</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Reserva entrenamientos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Videos</div>
+        </div>
+
+    </div>
+
+    <div class="step">
+
+        <div>
+            <div class="circle"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Horario talleres</div>
+        </div>
+
+    </div>
+
+    <div class="step step-active">
+
+        <div>
+            <div class="circleLast"><i class="fa fa-check"></i></div>
+        </div>
+
+        <div>
+            <div class="title">Acreditación en PDF</div>
+        </div>
+
+    </div>
 
 {% endif %}
+
 <br>
  

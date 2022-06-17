@@ -4,17 +4,23 @@
 
 {% block body %}
 
-    <form action="formalta" method="post">
+    <form action="formeditar" method="post">
 
         <div class="container">
 
-            <h3 style="text-align:center;">Registrar nuevo usuario</h3>
+            <h3 style="text-align:center;">Editar usuario</h3>
 
             <div class="row">
 
                 <div class="col-sm-3"></div>
 
                 <div class="col-sm-6">
+
+                    <label for="inputNombre">Nombre</label>
+                    <input type="text" name="nombre" id="inputNombre" class="form-control" required><br>
+
+                    <label for="inputApellidos">Apellidos</label>
+                    <input type="text" name="apellidos" id="inputApellidos" class="form-control" required><br>
 
                     <label for="inputEmail">Email</label>
                     <input type="email" name="email" id="inputEmail" class="form-control" required><br>

@@ -6,20 +6,48 @@
 <p> {{ app.user.id }} </p>
 #}
 
-{% for material in materiales %}
-    <h5>{{ material.titulo }}</h5>
-    
-    <p>{{ material.enlace }}</p> {# Cambiar por iframe #}
-
-
-{% endfor %}
-
+{% set tema = '' %}
 {% if info == '0 Curso sin pasos' %}
 
     {% for material in materiales %}
-        <h5>{{ material.titulo }}</h5>
-    {% endfor %}
 
+        {% if material.visibilidad == '1' %}
+
+            {% if tema != material.tema %}
+
+                <br><br>
+                {% set tema = material.tema %}
+                <h4 style="text-decoration: underline;">Tema {{ material.tema }}</h4>
+
+            {% endif %}
+
+            {% set enlace = material.enlace|split('/view') %}
+
+            {% if material.tipo == 'PDF' %}
+
+                <h5> - {{ material.titulo }}</h5>
+                <a href="{{ material.enlace }}" download="newfilename">{{ material.titulo }}.pdf</a>
+
+            {% elseif material.tipo == 'Video' %}
+
+                <h5> - {{ material.titulo }}</h5>
+
+                <div class="row" style="text-aling:center">
+                    <iframe id="{{ material.titulo }}"
+                        title="{{ material.titulo }}"
+                        style="height: 650px;"
+                        src="{{ enlace[0] }}/preview">
+                    </iframe>
+                </div>
+
+            {% endif %}
+
+            <br><br>
+
+        {% endif %}
+        
+    {% endfor %}
+        
 {% elseif info == '1 Cuestionario inicial' %}
 
     <h5>Cuestionario inicial</h5>
@@ -34,7 +62,7 @@
         
             <div class="alert alert-info">
 
-                <p>Recuerde que la prueba dura entorno a 2 horas. <br>
+                <p>Recuerde que la prueba dura entorno a 2:30 horas. <br>
                 Seleccione una hora entre las 09:00 am a 14:00 pm, por favor no seleccione fines de semana.</p>
 
             </div>

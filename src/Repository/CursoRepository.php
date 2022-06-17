@@ -45,7 +45,29 @@ class CursoRepository extends ServiceEntityRepository
     public function getAllCursos(){
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = ' SELECT * FROM Curso ';
+        $sql = 'SELECT * FROM Curso';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function getAllCursosNombres(){
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT nombre FROM Curso';
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchAllAssociative();
+    }
+
+    public function getAllCursosNombresActivos(){
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = 'SELECT nombre FROM Curso WHERE visibilidad = "1"';
 
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();
@@ -100,7 +122,7 @@ class CursoRepository extends ServiceEntityRepository
     public function materiales($id){
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = "SELECT * FROM material WHERE id_curso_id='$id'";
+        $sql = "SELECT * FROM material WHERE id_curso_id='$id' ORDER BY tema";
 
         $stmt = $conn->prepare($sql);
         $resultSet = $stmt->executeQuery();

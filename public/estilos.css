@@ -1,7 +1,7 @@
 * {
     color: #0A72B8;
-    /* overflow-x: hidden; */
     /* overflow-x: hidden;
+    overflow-x: hidden;
     overflow-y: hidden; */
 }
 
@@ -15,7 +15,8 @@ body{
 }
 
 #ColumnaIzqCurso {
-    box-shadow: 5px 10px 18px #0A72B8;
+    box-shadow: 5px -44px 33px #0A72B8;
+    z-index: -1;
 }
 
 b{

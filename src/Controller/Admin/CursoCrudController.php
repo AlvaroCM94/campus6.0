@@ -25,16 +25,19 @@ class CursoCrudController extends AbstractCrudController
         yield TextField::new('nombre');
         yield ChoiceField::new('etiqueta') -> setChoices([ 
             'Marketing Skills' => 'Marketing Skills',
+            'VR' => 'VR',
+            'Unity' => 'Unity',
+            'SCE' => 'SCE',
         ]);
-        yield NumberField::new('duracion') -> onlyOnForms();
-        yield ChoiceField::new('valoracion') -> setChoices([ 
+        yield NumberField::new('duracion', 'Duración (Horas)') -> onlyOnForms();
+        yield ChoiceField::new('valoracion', 'Valoración') -> setChoices([ 
             1 => 1, 
             2 => 2, 
             3 => 3, 
             4 => 4, 
             5 => 5 
         ]);
-        yield TextareaField::new('descripcion') -> onlyOnForms();
+        yield TextareaField::new('descripcion','Descripción') -> onlyOnForms();
         yield TextareaField::new('competencias') -> onlyOnForms();
         yield TextareaField::new('dinamicas') -> onlyOnForms();
         yield TextField::new('imagen');

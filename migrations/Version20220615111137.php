@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20220602133659 extends AbstractMigration
+final class Version20220615111137 extends AbstractMigration
 {
     public function getDescription(): string
     {
@@ -20,12 +20,14 @@ final class Version20220602133659 extends AbstractMigration
     public function up(Schema $schema): void
     {
         // this up() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE material ADD tema VARCHAR(255) NOT NULL, ADD descripcion LONGTEXT NOT NULL, ADD visibilidad TINYINT(1) NOT NULL');
+        $this->addSql('ALTER TABLE material ADD tipo VARCHAR(255) DEFAULT NULL');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_188D2E3B1A8B7D9 ON reserva (fecha)');
     }
 
     public function down(Schema $schema): void
     {
         // this down() migration is auto-generated, please modify it to your needs
-        $this->addSql('ALTER TABLE material DROP tema, DROP descripcion, DROP visibilidad');
+        $this->addSql('ALTER TABLE material DROP tipo');
+        $this->addSql('DROP INDEX UNIQ_188D2E3B1A8B7D9 ON reserva');
     }
 }

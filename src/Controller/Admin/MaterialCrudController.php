@@ -8,6 +8,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\BooleanField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextareaField;
 
@@ -26,6 +27,14 @@ class MaterialCrudController extends AbstractCrudController
         yield TextField::new('titulo');
         yield TextField::new('enlace');
         yield TextareaField::new('descripcion');
+        yield ChoiceField::new('tipo')->setChoices([
+            'Video' => 'Video',
+            'Imagen' => 'Imagen',
+            'PDF' => 'PDF',
+            'Power Point' => 'Power Point',
+            'Word' => 'Word',
+            'Enlace' => 'Enlace',
+        ]);
         yield BooleanField::new('visibilidad') -> renderAsSwitch( false );
     }
 }

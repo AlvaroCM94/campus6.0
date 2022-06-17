@@ -81,6 +81,17 @@ class UsuarioRepository extends ServiceEntityRepository implements PasswordUpgra
         return $resultSet->fetchAllAssociative();
     }
 
+    public function cambioContraUsuario($cifrada, $email){
+        $conn = $this->getEntityManager()->getConnection();
+
+        $sql = "UPDATE usuario SET password = '$cifrada' WHERE email = '$email'";
+
+        $stmt = $conn->prepare($sql);
+        $resultSet = $stmt->executeQuery();
+
+        return $resultSet->fetchAllAssociative();
+    }
+
     public function getUsuarioPorEmail($email){
         $conn = $this->getEntityManager()->getConnection();
 
@@ -125,19 +136,16 @@ class UsuarioRepository extends ServiceEntityRepository implements PasswordUpgra
         return $resultSet->fetchAllAssociative();
     }
 
-    public function contactoForm($nombre, $rol, $password, $correo, $apellidos, $cp, $genero, $estudios, $areaTitulo,
-        $empresa, $cargo, $almaMater, $interes, $telefono, $conoce, $tipoContacto, $comunicaciones, $datos, $tramitado){
+    public function contactoForm($nombreApe, $rol, $password, $correo, $comunicaciones, $datos, $tipoInfo, $interes, $telefono){
 
         $conn = $this->getEntityManager()->getConnection();
 
-        $sql = "INSERT INTO usuario (nombre, roles, password, email, apellidos, cp, genero, nivel_estudios, area_titulo, empresa, cargo, alma_mater, areas_interes, telefono, como_conoce, tipo_contacto, comunicaciones, procesar_almacenar_datos, tramitado)
-        VALUES ('$nombre', '$rol', '$password', '$correo', '$apellidos', '$cp', '$genero', '$estudios', '$areaTitulo', '$empresa', '$cargo', '$almaMater', '$interes', '$telefono', '$conoce', '$tipoContacto', '$comunicaciones', '$datos', '0' )";
-        //dd($sql);
-
+        $sql = "INSERT INTO usuario (nombre, roles, password, email, comunicaciones, procesar_almacenar_datos, tramitado, info_inscripcion, areas_interes, telefono)
+        VALUES ('$nombreApe', '$rol', '$password', '$correo', '$comunicaciones', '$datos', '0', '$tipoInfo', '$interes', '$telefono')";
+        
         $stmt = $conn->prepare($sql);
-        //dd($stmt);
+
         $resultSet = $stmt->executeQuery();
-        //dd($resultSet);
 
         return $resultSet->fetchAllAssociative();
     }

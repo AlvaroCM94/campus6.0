@@ -24,7 +24,7 @@ use Symfony\Component\Validator\Constraints\Length;
 class WebController extends AbstractController
 {
 
-    // *****************************************************WEB CONTROLLERS*****************************************************
+    //***************************************************** WEB CONTROLLERS *****************************************************
 
     public function navbar(): Response{
 
@@ -68,13 +68,26 @@ class WebController extends AbstractController
 
     }
 
-    public function contacto(): Response{
+    public function contacto(EntityManagerInterface $em): Response{
 
         $error = "";
 
-        return $this->render('web/contacto.html.twig', [
-            'contoller_name' => 'WebController', 'error' => $error,
-        ]);
+        try {
+
+            $cursosActivos = $em->getRepository(Curso::class)->getAllCursos();
+            //dd($cursosActivos[0]["nombre"]);
+
+        } catch (Throwable $e) {
+
+            echo "Error: " . $e . "<br>";
+
+        } finally {
+
+            return $this->render('web/contacto.html.twig', [
+                'contoller_name' => 'WebController', 'error' => $error, 'cursosActivos' => $cursosActivos
+            ]);
+
+        }
 
     }
 
@@ -86,7 +99,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -111,7 +124,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -130,7 +143,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -149,7 +162,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -168,7 +181,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -187,7 +200,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -237,6 +250,20 @@ class WebController extends AbstractController
 
     }
 
+    public function botonEditarAdmin(){
+
+        return $this->render('admin/botonEditarAdmin.html.twig');
+    }
+
+    public function editar(){
+
+        $usuario = new Usuario();
+        $form = $this->createForm(EditarFormType::class, $usuario);
+
+        return $this->render('admin/editarUsuario.html.twig', ['usuario_form' => $form->createView()]);
+
+    }
+
     public function curso(){
 
         return $this->render('campus/Curso.html.twig');
@@ -251,7 +278,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -279,7 +306,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -287,6 +314,29 @@ class WebController extends AbstractController
             $form = $this->createForm(AltaFormType::class, $usuario);
             return $this->render('admin/crearUsuario.html.twig', ['usuario_form' => $form->createView()]);
 
+        }
+    }
+
+    public function editUser(UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $em){
+
+        try {
+
+            $email = $_POST["email"];
+
+            $contraseña = $_POST["password"];
+            $aux = new Usuario();
+            $cifrada = $passwordHasher->hashPassword($aux, $contraseña);
+
+            $em->getRepository(Usuario::class)->cambioContraUsuario($cifrada, $email);
+
+        } catch (Throwable $e) {
+
+            //echo "Error: " . $e . "<br>";
+
+        } finally {
+
+            return $this->redirectToRoute('admin?crudAction=index&crudControllerFqcn=App\Controller\Admin\UsuarioCrudController&menuIndex=0&signature=rIQ1KTFnCZbuD1X6XAobVWz4WBjElofPpvQjaBN_ECM&submenuIndex=-1');
+        
         }
     }
 
@@ -312,7 +362,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -330,17 +380,16 @@ class WebController extends AbstractController
             $emailAux = $this->getUser()->getEmail();
             $idUser = $em->getRepository(Usuario::class)->getUsuarioPorEmail($emailAux);
             $info = $em->getRepository(Curso::class)->getEstado($idUser[0]['id'], $id);
-
+            
             $material = $em->getRepository(Curso::class)->materiales($id);
 
             $lugares = $em->getRepository(Lugares::class)->getAllLugares();
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
-
             return $this->render('campus/estadoCurso.html.twig', [
                 'contoller_name' => 'WebController', 'info' => $info[0]['estado'], 'materiales' => $material, 'lugares' => $lugares, 'idCurso' => $id
             ]);
@@ -358,7 +407,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -385,7 +434,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -416,7 +465,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -448,7 +497,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -482,7 +531,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -518,7 +567,7 @@ class WebController extends AbstractController
 
         } catch (Throwable $e) {
 
-            echo "Error: " . $e . "<br>";
+            //echo "Error: " . $e . "<br>";
 
         } finally {
 
@@ -531,15 +580,17 @@ class WebController extends AbstractController
 
         $error = "";
 
+        $tipoInfo = $_POST["optradio"];
+
         $nombre = $_POST["nombre"];
 
         $rolAux = "ROLE_USER";
         $rol = '["' . $rolAux . '"]';
 
         $userAux = new Usuario();
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.-';
         $contraseña = '';
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 20; $i++) {
             $index = rand(0, strlen($characters) - 1);
             $contraseña .= $characters[$index];
         }
@@ -547,17 +598,8 @@ class WebController extends AbstractController
 
         $correo = $_POST["correo"];
         $apellidos = $_POST["apellidos"];
-        $cp = $_POST["cp"];
-        $genero = $_POST["genero"];
-        $estudios = $_POST["estudios"];
-        $areaTitulo = $_POST["areaTitulo"];
-        $empresa = $_POST["empresa"];
-        $cargo = $_POST["cargo"];
-        $almaMater = $_POST["almaMater"];
         $interes = $_POST["interes"];
         $telefono = $_POST["telefono"];
-        $conoce = $_POST["conoce"];
-        $tipoContacto = $_POST["tipoContacto"];
 
         if($_POST["comunicaciones"] == 'on'){
             $comunicaciones = 1;
@@ -571,25 +613,25 @@ class WebController extends AbstractController
             $datos = 0;
         }
 
-        $tramitado = "off";
-
-        // dd($nombre, $rol, $password, $correo, $apellidos, $cp, $genero, $estudios, $areaTitulo, 
-        //     $empresa, $cargo, $almaMater, $interes, $telefono, $conoce, $tipoContacto, $comunicaciones, $datos);
+        $nombreApe = $nombre . " " . $apellidos;
 
         try {
 
-            $em->getRepository(Usuario::class)->contactoForm($nombre, $rol, $password, $correo, $apellidos, $cp, $genero, $estudios, $areaTitulo, 
-            $empresa, $cargo, $almaMater, $interes, $telefono, $conoce, $tipoContacto, $comunicaciones, $datos, $tramitado);
-
+            //dd($nombreApe, $rol, $password, $correo, $comunicaciones, $datos, $tipoInfo, $interes, $telefono);
+            $em->getRepository(Usuario::class)->contactoForm($nombreApe, $rol, $password, $correo, $comunicaciones, $datos, $tipoInfo, $interes, $telefono);
+            
         } catch (Throwable $e) {
+
+            //echo "Error: " . $e . "<br>";
             
             $error = "Error en la creación del usuario, compruebe que el correo o el nombre utilizado no pertenezca ya a una cuenta en uso";
-            //echo "Error: " . $e . "<br>";
 
         } finally {
 
+            $cursosActivos = $em->getRepository(Curso::class)->getAllCursos();
+
             return $this->render('web/contacto.html.twig', [
-                'contoller_name' => 'WebController', 'error' => $error,
+                'contoller_name' => 'WebController', 'error' => $error, 'cursosActivos' => $cursosActivos,
             ]);
 
         }

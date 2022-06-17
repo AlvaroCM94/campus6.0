@@ -64,6 +64,14 @@ formalta:
     path: /formalta
     controller: App\Controller\WebController::uploadUser
 
+# editar:
+#     path: /editar
+#     controller: App\Controller\WebController::editar
+
+formeditar:
+    path: /formeditar
+    controller: App\Controller\WebController::editUser
+
 
 
 

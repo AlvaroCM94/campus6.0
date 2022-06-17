@@ -7,7 +7,6 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -43,13 +42,13 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'id_usuario', targetEntity: Reserva::class)]
     private $reservas;
 
-    #[ORM\OneToOne(mappedBy: 'id_alumno', targetEntity: Chat::class, cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(mappedBy: 'id_alumno', targetEntity: Chat::class)]
     private $chat_alumno;
 
     #[ORM\OneToMany(mappedBy: 'id_instructor', targetEntity: Chat::class)]
     private $chat_instructor;
 
-    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    /*#[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $apellidos;
 
     #[ORM\Column(type: 'integer', nullable: true)]
@@ -72,19 +71,19 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $alma_mater;
-
+*/
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $areas_interes;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private $telefono;
-
+/*
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $como_conoce;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $tipo_contacto;
-
+    */
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $comunicaciones;
 
@@ -93,6 +92,9 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $tramitado;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $info_inscripcion;
 
     public function __construct()
     {
@@ -393,7 +395,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function getApellidos(): ?string
+    /*public function getApellidos(): ?string
     {
         return $this->apellidos;
     }
@@ -488,7 +490,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
+*/
     public function getAreasInteres(): ?string
     {
         return $this->areas_interes;
@@ -512,7 +514,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
+/*
     public function getComoConoce(): ?string
     {
         return $this->como_conoce;
@@ -535,7 +537,7 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
         $this->tipo_contacto = $tipo_contacto;
 
         return $this;
-    }
+    }*/
 
     public function isComunicaciones(): ?bool
     {
@@ -569,6 +571,18 @@ class Usuario implements UserInterface, PasswordAuthenticatedUserInterface
     public function setTramitado(?bool $tramitado): self
     {
         $this->tramitado = $tramitado;
+
+        return $this;
+    }
+
+    public function getInfoInscripcion(): ?string
+    {
+        return $this->info_inscripcion;
+    }
+
+    public function setInfoInscripcion(?string $info_inscripcion): self
+    {
+        $this->info_inscripcion = $info_inscripcion;
 
         return $this;
     }
