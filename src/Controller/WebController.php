@@ -118,7 +118,7 @@ class WebController extends AbstractController
 
     public function privacidad(): Response{
 
-        return $this->render('privacidad.html.twig');
+        return $this->render('web/privacidad.html.twig');
 
     }
 

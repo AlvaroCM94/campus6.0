@@ -73,7 +73,7 @@ formeditar:
     controller: App\Controller\WebController::editUser
 
 privacidad:
-    path: /politica-privacidad
+    path: /privacidad
     controller: App\Controller\WebController::privacidad
 
 
