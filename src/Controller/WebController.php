@@ -116,6 +116,12 @@ class WebController extends AbstractController
 
     }
 
+    public function privacidad(): Response{
+
+        return $this->render('privacidad.html.twig');
+
+    }
+
     public function objetivos(EntityManagerInterface $em, int $id): Response{
 
         try {
